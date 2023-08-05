@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-
+import './style/style.css'
 
 export default function Nav(){
     return(
-        <div style={{
-
-        }}>
-            <nav>Cerulean Lion Sticky Note App</nav>
-            <img src=''></img>
+        <div id='nav'>
+            <div>Cerulean Lion Sticky Note App</div>
         </div>
     )
 }
