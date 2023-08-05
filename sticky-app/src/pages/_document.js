@@ -5,8 +5,7 @@ import Nav from '../components/nav.js'
 export default function Document() {
   return (
     <div>
-      <Footer/>
-      <Nav/>
+     
     </div>
   )
 }
