@@ -15,11 +15,10 @@ export const getNotes = router.get("/notes", (req, res) => {
 		});
 });
 
-// Get a note by ID
-export const getNoteById = router.get("/notes/:id", (req, res) => {
-	const id = req.params.id;
-
-	Note.findById(id)
+// Get a note by Title
+export const getNoteByTitle = router.get("/notes/:title", (req, res) => {
+	const title = req.params.title;
+	Note.findOne({ title: title })
 		.then((note) => {
 			if (!note) {
 				return res.status(404).json({ message: "Note not found" });
@@ -27,7 +26,7 @@ export const getNoteById = router.get("/notes/:id", (req, res) => {
 			res.status(200).json(note);
 		})
 		.catch((err) => {
-			console.error("Error getting notes:", err);
+			console.error("Error getting note:", err);
 			return res.status(500).json({ message: "Internal Server Error" });
 		});
 });
@@ -50,10 +49,9 @@ export const createNote = router.post("/notes", (req, res) => {
 // TODO: Add PUT route to update a note
 
 // Delete a note
-export const deleteNote = router.delete("/notes/:id", async (req, res) => {
-	const { id } = req.params;
-
-	Note.findByIdAndDelete(id)
+export const deleteNote = router.delete("/notes/:title", async (req, res) => {
+	const { title } = req.params;
+	Note.findOneAndDelete({ title: title})
 		.then((note) => {
 			if (!note) {
 				return res.status(404).json({ message: "Note not found" });
