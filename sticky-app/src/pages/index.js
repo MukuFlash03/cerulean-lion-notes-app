@@ -1,21 +1,37 @@
+
+ /*<<<<<<< HEAD>>>>>>> d78ead03b9af33b18b0dc0ca412568948a1eafe6=======*/
+
+/*import { Inter } from 'next/font/google'
+
+
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
 
 
-const inter = Inter({ subsets: ["latin"] });
+
+
+import Image from "next/image";
+import { Inter } from "next/font/google";const inter = Inter({ subsets: ["latin"] });*/
+import Nav from "../components/nav.js";
+import Footer from "../components/footer.js"
+import Hero from "../components/Hero.js";
+
+
+
+
 
 export default function Home() {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between ${inter.className}`}
-    >
-      <div className="z-10 items-center justify-between font-mono text-sm lg:flex">
-        <Nav />
-        <Hero />
+    <div>
+      <Nav/>
+      <Footer/>
+      <Hero/>
+    </div>
 
-      </div>
-    </main>
-  );
+  )
+ 
+
+   
+  
+
 }
