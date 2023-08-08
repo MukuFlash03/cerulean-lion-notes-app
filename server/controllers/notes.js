@@ -48,7 +48,7 @@ export const createNote = router.post("/notes", (req, res) => {
     });
 });
 
-// PUT route to update a note
+// TODO: - PUT route to update a note
 
 export const updateNote = router.put("/notes", (req, res) => {
   const { title, content } = req.body;
