@@ -2,6 +2,9 @@ import Note from "../models/note.js";
 import express from "express";
 
 const router = express.Router();
+// alternative to importing the Note model and express
+// const express = require('express')
+// const Note = require('./models/note')
 
 // Get all notes
 export const getNotes = router.get("/notes", (req, res) => {
@@ -50,19 +53,32 @@ export const createNote = router.post("/notes", (req, res) => {
 
 // TODO: - PUT route to update a note
 
-export const updateNote = router.put("/notes", (req, res) => {
-  const { title, content } = req.body;
-  Note.findOneAndUpdate(id, { title: title }, option);
+/* this route may or may not work this way or it might need to import models and express the way I've commented at the beginning of this file.*/
 
-  note
-    .save({})
-    .then((result) => {
-      res.status(201).json(result);
-    })
-    .catch((err) => {
-      console.error("Error creating note:", err);
-      return res.status(500).json({ message: "Internal Server Error" });
+export const updateNote = router.put("/notes/:title", async (req, res) => {
+  const title = req.query.title;
+  const updateContent = req.body.content;
+
+  try {
+    const updatedNote = await Note.findOneAndUpdate(
+      `${title}`,
+      { content: updateContent },
+      { new: true }
+    );
+
+    if (!updatedNote) {
+      return res.status(404).json({ message: "Note not found" });
+    }
+
+    res.json({
+      message: `Note ${title} updated with content: ${updatedNote.updateContent}`,
     });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "An error occurred while updating your note" });
+  }
 });
 
 // Delete a note
