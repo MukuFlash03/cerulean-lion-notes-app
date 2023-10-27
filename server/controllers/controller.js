@@ -2,9 +2,6 @@ import Note from "../models/note.js";
 import express from "express";
 
 const router = express.Router();
-// alternative to importing the Note model and express
-// const express = require('express')
-// const Note = require('./models/note')
 
 // Get all notes
 export const getNotes = router.get("/notes", (req, res) => {
@@ -49,8 +46,7 @@ export const createNote = router.post("/notes", (req, res) => {
 		});
 });
 
-/* this route may or may not work this way or it might need to import models and express the way I've commented at the beginning of this file.*/
-
+// Update existing note
 export const updateNote = router.put("/notes/:title", (req, res) => {
 	const title = req.params.title;
 	const updateContent = req.body.content;
