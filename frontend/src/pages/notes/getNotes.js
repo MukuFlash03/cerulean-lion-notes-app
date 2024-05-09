@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 
+const PROXY_BE_URL = process.env.NEXT_PUBLIC_PROXY_BE_URL;
+console.log("Proxy BE URL value GET: " + PROXY_BE_URL);
+
 export default function getNotes() {
 	const [notes, setNotes] = useState([]);
 
 	useEffect(() => {
-		fetch("http://localhost:8000/api/notes", {
+		fetch(`${PROXY_BE_URL}/api/notes`, {
+		// fetch("http://localhost:8000/api/notes", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

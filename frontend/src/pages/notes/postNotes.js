@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
-const PROXY_BE_URL = "http://localhost:8000";
+const PROXY_BE_URL = process.env.NEXT_PUBLIC_PROXY_BE_URL;
+console.log("Proxy BE URL value POST: " + PROXY_BE_URL);
 
 export default function PostNote() {
 	const [title, setTitle] = useState(" ");
@@ -60,7 +61,7 @@ export default function PostNote() {
 					/>
 					<button
 						type="submit"
-						className="text-white px-4 mt-4 mb-4 py-2 border border-blue w-112 h-47 shadow-md"
+						className="text-black px-4 mt-4 mb-4 py-2 border border-blue w-112 h-47 shadow-md"
 					>
 						Post Note
 					</button>
