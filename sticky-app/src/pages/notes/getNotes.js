@@ -26,7 +26,7 @@ export default function getNotes() {
 						key={note._id}
 						className="flex flex-col items-center"
 					>
-						<h1 className="text-2xl font-bold mb-4 mt-5 text-white text-center">
+						<h1 className="text-2xl font-bold mb-4 mt-5 text-black text-center">
 							{note.title}
 						</h1>
 						<p className="text-lg font-poppins text-left">
