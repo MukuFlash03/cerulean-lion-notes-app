@@ -46,12 +46,37 @@ export const createNote = router.post("/notes", (req, res) => {
 		});
 });
 
-// TODO: Add PUT route to update a note
+// Update existing note
+export const updateNote = router.put("/notes/:title", (req, res) => {
+	const title = req.params.title;
+	const updateContent = req.body.content;
+
+	Note.findOneAndUpdate(
+		{ title }, // Use title as an object key
+		{ content: updateContent },
+		{ new: true }
+	)
+		.then((updatedNote) => {
+			if (!updatedNote) {
+				return res.status(404).json({ message: "Note not found" });
+			}
+
+			res.json({
+				message: `Note ${title} updated with content: ${updateContent}`,
+			});
+		})
+		.catch((error) => {
+			console.log(error);
+			res.status(500).json({
+				message: "An error occurred while updating your note",
+			});
+		});
+});
 
 // Delete a note
 export const deleteNote = router.delete("/notes/:title", async (req, res) => {
 	const { title } = req.params;
-	Note.findOneAndDelete({ title: title})
+	Note.findOneAndDelete({ title: title })
 		.then((note) => {
 			if (!note) {
 				return res.status(404).json({ message: "Note not found" });
