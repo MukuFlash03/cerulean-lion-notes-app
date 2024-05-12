@@ -6,9 +6,9 @@ services:
       context: backend
       dockerfile: Dockerfile
     ports:
-      - "8000:${BACKEND_PORT}"
+      - "${BACKEND_HOST_PORT}:${BACKEND_DOCKER_PORT}"
     env_file:
-      - .env 
+      - .env
     networks:
       - network_notes
 
@@ -17,9 +17,9 @@ services:
       context: frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:${FRONTEND_PORT}"
+      - "${FRONTEND_HOST_PORT}:${FRONTEND_DOCKER_PORT}"
     env_file:
-      - .env 
+      - .env
     networks:
       - network_notes
 
